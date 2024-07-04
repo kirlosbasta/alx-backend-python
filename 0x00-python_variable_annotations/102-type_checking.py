@@ -4,6 +4,7 @@ from typing import Tuple, List
 
 
 def zoom_array(lst: Tuple, factor: int = 2) -> List:
+    '''return a list with each item repeated by factor'''
     zoomed_in: List = [
         item for item in lst
         for i in range(factor)
