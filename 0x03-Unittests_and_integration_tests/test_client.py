@@ -100,10 +100,11 @@ class TestIntegrationGithubOrgClient(unittest.TestCase):
         cls.get_patcher.stop()
 
     def test_public_repos(self) -> None:
-        '''should return all the repos when license is not passed'''
-        test_class = GithubOrgClient('google')
-        result = test_class.public_repos()
-        self.assertEqual(result, self.expected_repos)
+        """Tests the `public_repos` method."""
+        self.assertEqual(
+            GithubOrgClient("google").public_repos(),
+            self.expected_repos,
+        )
 
     def test_public_repos_with_license(self) -> None:
         """Tests the `public_repos` method with a license."""
