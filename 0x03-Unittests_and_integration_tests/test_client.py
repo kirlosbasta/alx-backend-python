@@ -21,12 +21,13 @@ class TestGithubOrgClient(unittest.TestCase):
         org_client.org()
         mock_get_json.assert_called_once_with(url)
 
-    def test_public_repos_url(self) -> None:
-        '''should pass the test'''
+    def test_public_repos_url(self):
+        """ Test that the result of _public_repos_url is the expected one
+        """
         with patch('client.GithubOrgClient.org',
-                   new_callable=PropertyMock) as mock_org:
-            payload = {'repos_url': 'cool'}
-            mock_org.return_value = payload
-            test = GithubOrgClient('googles')
-            result = test._public_repos_url
-            self.assertEqual(result, payload['repos_url'])
+                   new_callable=PropertyMock) as mock:
+            payload = {"repos_url": "World"}
+            mock.return_value = payload
+            test_class = GithubOrgClient('test')
+            result = test_class._public_repos_url
+            self.assertEqual(result, payload["repos_url"])
