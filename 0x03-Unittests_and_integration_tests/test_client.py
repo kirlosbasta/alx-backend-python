@@ -3,7 +3,7 @@
 Unittest for client.py
 '''
 import unittest
-from unittest.mock import patch, Mock
+from unittest.mock import patch, Mock, PropertyMock
 from parameterized import parameterized
 from typing import Mapping, Sequence, Any, Dict
 from client import get_json, memoize, GithubOrgClient
@@ -20,3 +20,11 @@ class TestGithubOrgClient(unittest.TestCase):
         org_client = GithubOrgClient(org)
         org_client.org()
         mock_get_json.assert_called_once_with(url)
+
+    def test_public_repos_url(self) -> None:
+        '''should pass the test'''
+        with patch('client.GithubOrgClient.org',
+                   new_callable=PropertyMock) as mock_org:
+            mock_org.return_value = {'repos_url': 5}
+            test = GithubOrgClient('googles')
+            self.assertEqual(test._public_repos_url, 5)
