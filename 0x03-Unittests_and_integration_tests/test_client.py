@@ -11,7 +11,8 @@ from client import get_json, memoize, GithubOrgClient
 
 class TestGithubOrgClient(unittest.TestCase):
     '''Test github org client'''
-    @parameterized.expand(['google, abc'])
+
+    @parameterized.expand(['google', 'abc'])
     @patch('client.get_json')
     def test_org(self, org: str, mock_get_json) -> None:
         '''test that org return the expected result'''
