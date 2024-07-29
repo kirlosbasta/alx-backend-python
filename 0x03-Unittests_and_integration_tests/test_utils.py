@@ -53,16 +53,16 @@ class TestGetJson(unittest.TestCase):
 
 class TestMemoize(unittest.TestCase):
     '''Test memoize decorator'''
-    def test_memoize(self):
+    def test_memoize(self) -> None:
         '''should memoize each function call'''
         class TestClass:
             '''Test class'''
-            def a_method(self):
+            def a_method(self) -> int:
                 '''return 42'''
                 return 42
 
             @memoize
-            def a_property(self):
+            def a_property(self) -> int:
                 '''call a_method and remember the result'''
                 return self.a_method()
 
