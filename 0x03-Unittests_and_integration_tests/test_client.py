@@ -28,4 +28,5 @@ class TestGithubOrgClient(unittest.TestCase):
             payload = {'repos_url': 'cool'}
             mock_org.return_value = payload
             test = GithubOrgClient('googles')
-            self.assertEqual(test._public_repos_url, payload['repos_url'])
+            result = test._public_repos_url
+            self.assertEqual(result, payload['repos_url'])
